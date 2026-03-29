@@ -552,7 +552,7 @@ while true; do
 			docker rm -f $dockername
 			;;
 		5)
-			send_stats "重啟指定容器"
+			send_stats "重启指定容器"
 			read -e -p "請輸入容器名稱（多個容器名稱請以空格分隔）:" dockername
 			docker restart $dockername
 			;;
@@ -650,7 +650,7 @@ docker_image() {
 while true; do
 	clear
 	send_stats "Docker映像管理"
-	echo "Docker镜像列表"
+	echo "Docker映像列表"
 	docker image ls
 	echo ""
 	echo "鏡像操作"
@@ -804,7 +804,7 @@ docker_ipv6_on() {
 
 		# 比較原始配置與新配置
 		if [[ "$ORIGINAL_CONFIG" == "$UPDATED_CONFIG" ]]; then
-			echo -e "${gl_huang}目前已開啟ipv6訪問${gl_bai}"
+			echo -e "${gl_huang}当前已开启ipv6访问${gl_bai}"
 		else
 			echo "$UPDATED_CONFIG" | jq . > "$CONFIG_FILE"
 			restart docker
@@ -819,7 +819,7 @@ docker_ipv6_off() {
 
 	local CONFIG_FILE="/etc/docker/daemon.json"
 
-	# 檢查設定檔是否存在
+	# 检查配置文件是否存在
 	if [ ! -f "$CONFIG_FILE" ]; then
 		echo -e "${gl_hong}設定檔不存在${gl_bai}"
 		return
@@ -1388,7 +1388,7 @@ update_docker_compose_with_db_creds() {
 
 
 auto_optimize_dns() {
-	# 获取国家代码（如 CN、US 等）
+	# 取得國家代碼（如 CN、US 等）
 	local country=$(curl -s ipinfo.io/country)
 
 	# 根據國家設定 DNS
@@ -2911,7 +2911,7 @@ docker_app_plus() {
 		echo "------------------------"
 		echo "0. 返回上一級選單"
 		echo "------------------------"
-		read -e -p "輸入你的選擇:" choice
+		read -e -p "输入你的选择: " choice
 		case $choice in
 			1)
 				setup_docker_dir
@@ -3422,7 +3422,7 @@ stream_panel() {
 		check_docker_app
 		check_docker_image_update $docker_name
 		echo -e "Stream四層代理轉送工具$check_docker $update_status"
-		echo "NGINX Stream 是 NGINX 的 TCP/UDP 代理模块，用于实现高性能的 传输层流量转发和负载均衡。"
+		echo "NGINX Stream 是 NGINX 的 TCP/UDP 代理模組，用於實現高效能的 傳輸層流量轉送和負載平衡。"
 		echo "------------------------"
 		if [ -d "/home/web/stream.d" ]; then
 			list_stream_services
@@ -4348,7 +4348,7 @@ yt_menu_pro() {
 				send_stats "大量影片下載"
 				install nano
 				if [ ! -f "$URL_FILE" ]; then
-				  echo -e "# 輸入多個視訊連結位址\n# https://www.bilibili.com/bangumi/play/ep733316?spm_id_from=333.337.0.0&from_spmid=666.25.episode.0" > "$URL_FILE"
+				  echo -e "# 输入多个视频链接地址\n# https://www.bilibili.com/bangumi/play/ep733316?spm_id_from=333.337.0.0&from_spmid=666.25.episode.0" > "$URL_FILE"
 				fi
 				nano $URL_FILE
 				echo "現在開始批量下載..."
@@ -5129,7 +5129,7 @@ bbrv3() {
 						apt update -y
 						apt install -y linux-xanmod-x64v$version
 
-						echo "XanMod核心已更新。重啟後生效"
+						echo "XanMod内核已更新。重启后生效"
 						rm -f /etc/apt/sources.list.d/xanmod-release.list
 						rm -f check_x86-64_psabi.sh*
 
@@ -5171,7 +5171,7 @@ bbrv3() {
 					linux_Settings
 				fi
 			else
-				echo "无法确定操作系统类型"
+				echo "無法確定作業系統類型"
 				break_end
 				linux_Settings
 			fi
@@ -5213,7 +5213,7 @@ bbrv3() {
 
 elrepo_install() {
 	# 導入 ELRepo GPG 公鑰
-	echo "導入 ELRepo GPG 公鑰..."
+	echo "导入 ELRepo GPG 公钥..."
 	rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 	# 檢測系統版本
 	local os_version=$(rpm -q --qf "%{VERSION}" $(rpm -qf /etc/os-release) 2>/dev/null | awk -F '.' '{print $1}')
@@ -5299,7 +5299,7 @@ elrepo() {
 		  echo "請備份數據，將為你升級Linux內核"
 		  echo "影片介紹: https://www.bilibili.com/video/BV1mH4y1w7qA?t=529.2"
 		  echo "------------------------------------------------"
-		  echo "仅支持红帽系列发行版 CentOS/RedHat/Alma/Rocky/oracle "
+		  echo "僅支援紅帽系列發行 CentOS/RedHat/Alma/Rocky/oracle"
 		  echo "升級Linux核心可提升系統效能與安全，建議有條件的嘗試，生產環境謹慎升級！"
 		  echo "------------------------------------------------"
 		  read -e -p "確定繼續嗎？ (Y/N):" choice
@@ -6996,7 +6996,7 @@ linux_tools() {
 
 		  32)
 			  clear
-			  send_stats "全部安裝（不含遊戲和螢幕保護程式）"
+			  send_stats "全部安装（不含游戏和屏保）"
 			  install curl wget sudo socat htop iftop unzip tar tmux ffmpeg btop ranger ncdu fzf vim nano git
 			  ;;
 
@@ -7313,7 +7313,7 @@ docker_ssh_migration() {
 
 			# 刪除已存在但未運行的容器
 			if docker ps -a --format '{{.Names}}' | grep -q "^${container}$"; then
-				echo -e "${YELLOW}容器 [$container] 存在但未运行，删除旧容器...${NC}"
+				echo -e "${YELLOW}容器 [$container] 存在但未運行，刪除舊容器...${NC}"
 				docker rm -f "$container"
 			fi
 
@@ -7985,7 +7985,7 @@ linux_Oracle() {
 			  read -e -p "請輸入你重裝後的密碼:" vpspasswd
 			  install wget
 			  bash <(wget --no-check-certificate -qO- "${gh_proxy}raw.githubusercontent.com/MoeClub/Note/master/InstallNET.sh") $xitong -v 64 -p $vpspasswd -port 22
-			  send_stats "甲骨文雲端重裝系統腳本"
+			  send_stats "甲骨文云重装系统脚本"
 			  ;;
 			[Nn])
 			  echo "已取消"
@@ -8095,7 +8095,7 @@ linux_ldnmp() {
 	echo -e "${gl_huang}3.   ${gl_bai}安裝Discuz論壇${gl_huang}4.   ${gl_bai}安裝可道雲桌面"
 	echo -e "${gl_huang}5.   ${gl_bai}安裝蘋果CMS影視站${gl_huang}6.   ${gl_bai}安裝獨角數發卡網"
 	echo -e "${gl_huang}7.   ${gl_bai}安裝flarum論壇網站${gl_huang}8.   ${gl_bai}安裝typecho輕量部落格網站"
-	echo -e "${gl_huang}9.   ${gl_bai}安裝LinkStack分享連結平台${gl_huang}20.  ${gl_bai}自訂動態站點"
+	echo -e "${gl_huang}9.   ${gl_bai}安装LinkStack共享链接平台         ${gl_huang}20.  ${gl_bai}自定义动态站点"
 	echo -e "${gl_huang}------------------------"
 	echo -e "${gl_huang}21.  ${gl_bai}僅安裝nginx${gl_huang}★${gl_bai}                     ${gl_huang}22.  ${gl_bai}網站重定向"
 	echo -e "${gl_huang}23.  ${gl_bai}站點反向代理-IP+端口${gl_huang}★${gl_bai}            ${gl_huang}24.  ${gl_bai}站點反向代理-域名"
@@ -8492,7 +8492,7 @@ linux_ldnmp() {
 	  clear
 	  echo -e "[${gl_huang}5/6${gl_bai}] 編輯網站配置"
 	  echo "-------------"
-	  echo "按任一鍵繼續，可詳細設定網站配置，如偽靜態等內容"
+	  echo "按任意键继续，可以详细设置站点配置，如伪静态等内容"
 	  read -n 1 -s -r -p ""
 	  install nano
 	  nano /home/web/conf.d/$yuming.conf
@@ -8501,7 +8501,7 @@ linux_ldnmp() {
 	  clear
 	  echo -e "[${gl_huang}6/6${gl_bai}] 資料庫管理"
 	  echo "-------------"
-	  read -e -p "1. 我搭建新站 2. 我搭建老站有資料庫備份：" use_db
+	  read -e -p "1. 我搭建新站        2. 我搭建老站有数据库备份： " use_db
 	  case $use_db in
 		  1)
 			  echo
@@ -13307,7 +13307,7 @@ EOF
 
 				case "$choice" in
 				  1)
-					send_stats "已设置1G虚拟内存"
+					send_stats "已設定1G虛擬內存"
 					add_swap 1024
 
 					;;
@@ -13682,7 +13682,7 @@ EOF
 						  send_stats "新增定時任務"
 						  ;;
 					  2)
-						  read -e -p "请输入需要删除任务的关键字: " kquest
+						  read -e -p "請輸入需要刪除任務的關鍵字:" kquest
 						  crontab -l | grep -v "$kquest" | crontab -
 						  send_stats "刪除定時任務"
 						  ;;
@@ -13798,7 +13798,7 @@ EOF
 				echo -e "${gl_kjlan}總接收:${gl_bai}$rx"
 				echo -e "${gl_kjlan}總發送:${gl_bai}$tx"
 
-				# 检查是否存在 Limiting_Shut_down.sh 文件
+				# 檢查是否存在 Limiting_Shut_down.sh 文件
 				if [ -f ~/Limiting_Shut_down.sh ]; then
 					# 取得 threshold_gb 的值
 					local rx_threshold_gb=$(grep -oP 'rx_threshold_gb=\K\d+' ~/Limiting_Shut_down.sh)
@@ -13811,7 +13811,7 @@ EOF
 
 				echo
 				echo "------------------------------------------------"
-				echo "系統每分鐘會偵測實際流量是否到達閾值，到達後會自動關閉伺服器！"
+				echo "系统每分钟会检测实际流量是否到达阈值，到达后会自动关闭服务器！"
 				echo "------------------------"
 				echo "1. 開啟限流關機功能 2. 停用限流關機功能"
 				echo "------------------------"
@@ -13840,7 +13840,7 @@ EOF
 					(crontab -l ; echo "* * * * * ~/Limiting_Shut_down.sh") | crontab - > /dev/null 2>&1
 					crontab -l | grep -v 'reboot' | crontab -
 					(crontab -l ; echo "0 1 $cz_day * * reboot") | crontab - > /dev/null 2>&1
-					echo "限流关机已设置"
+					echo "限流關機已設定"
 					send_stats "限流關機已設定"
 					;;
 				  2)
@@ -14036,7 +14036,7 @@ EOF
 		  41)
 			clear
 			send_stats "留言板"
-			echo "访问科技lion官方留言板，您对脚本有任何想法欢迎留言交流！"
+			echo "造訪科技lion官方留言板，您對腳本有任何想法歡迎留言交流！"
 			echo "https://board.kejilion.pro"
 			echo "公共密碼: kejilion.sh"
 			  ;;
@@ -14049,7 +14049,7 @@ EOF
 			  echo "------------------------------------------------"
 			  echo "將對以下內容進行操作與優化"
 			  echo "1. 更新系統到最新"
-			  echo "2. 清理系统垃圾文件"
+			  echo "2. 清理系統垃圾文件"
 			  echo -e "3. 設定虛擬內存${gl_huang}1G${gl_bai}"
 			  echo -e "4. 設定SSH埠號為${gl_huang}5522${gl_bai}"
 			  echo -e "5. 啟動fail2ban防禦SSH暴力破解"
@@ -14059,7 +14059,7 @@ EOF
 			  echo -e "9. 自動優化DNS位址${gl_huang}海外: 1.1.1.1 8.8.8.8 國內: 223.5.5.5${gl_bai}"
 		  	  echo -e "10. 設定網路為${gl_huang}ipv4優先${gl_bai}"
 			  echo -e "11. 安裝基礎工具${gl_huang}docker wget sudo tar unzip socat btop nano vim${gl_bai}"
-			  echo -e "12. Linux系统内核参数优化切换到${gl_huang}均衡最佳化模式${gl_bai}"
+			  echo -e "12. Linux系統核心參數優化切換到${gl_huang}均衡最佳化模式${gl_bai}"
 			  echo "------------------------------------------------"
 			  read -e -p "確定一鍵保養嗎？ (Y/N):" choice
 
@@ -14110,7 +14110,7 @@ EOF
 				  echo "------------------------------------------------"
 				  install_docker
 				  install wget sudo tar unzip socat btop nano vim
-				  echo -e "[${gl_lv}OK${gl_bai}] 11/12. 安装基础工具${gl_huang}docker wget sudo tar unzip socat btop nano vim${gl_bai}"
+				  echo -e "[${gl_lv}OK${gl_bai}] 11/12. 安裝基礎工具${gl_huang}docker wget sudo tar unzip socat btop nano vim${gl_bai}"
 				  echo "------------------------------------------------"
 
 				  optimize_balanced
@@ -14377,7 +14377,7 @@ linux_file() {
 				read -e -p "請輸入要傳送的檔案路徑:" file_to_transfer
 				if [ ! -f "$file_to_transfer" ]; then
 					echo "錯誤: 文件不存在。"
-					send_stats "传送文件失败: 文件不存在"
+					send_stats "傳送文件失敗: 文件不存在"
 					continue
 				fi
 
@@ -14395,7 +14395,7 @@ linux_file() {
 				echo
 				if [ -z "$remote_password" ]; then
 					echo "錯誤: 請輸入遠端伺服器密碼。"
-					send_stats "传送文件失败: 未输入远端服务器密码"
+					send_stats "傳送檔案失敗: 未輸入遠端伺服器密碼"
 					continue
 				fi
 
@@ -14456,7 +14456,7 @@ run_commands_on_servers() {
 	local SERVERS_FILE="$HOME/cluster/servers.py"
 	local SERVERS=$(grep -oP '{"name": "\K[^"]+|"hostname": "\K[^"]+|"port": \K[^,]+|"username": "\K[^"]+|"password": "\K[^"]+' "$SERVERS_FILE")
 
-	# 將提取的資訊轉換為數組
+	# 将提取的信息转换为数组
 	IFS=$'\n' read -r -d '' -a SERVER_ARRAY <<< "$SERVERS"
 
 	# 遍歷伺服器並執行命令
@@ -14509,7 +14509,7 @@ while true; do
 
 	  case $sub_choice in
 		  1)
-			  send_stats "添加集群服务器"
+			  send_stats "新增叢集伺服器"
 			  read -e -p "伺服器名稱:" server_name
 			  read -e -p "伺服器IP:" server_ip
 			  read -e -p "伺服器連接埠（22）:" server_port
@@ -14619,7 +14619,7 @@ echo -e "${gl_zi}V.PS 6.9刀每月 東京軟銀 2核心 1G內存 20G硬碟 1T流
 echo -e "${gl_bai}網址: https://vps.hosting/cart/tokyo-cloud-kvm-vps/?id=148&?affid=1355&?affid=1355${gl_bai}"
 echo "------------------------"
 echo -e "${gl_kjlan}VPS更多熱門優惠${gl_bai}"
-echo -e "${gl_bai}网址: https://kejilion.pro/topvps/${gl_bai}"
+echo -e "${gl_bai}網址: https://kejilion.pro/topvps/${gl_bai}"
 echo "------------------------"
 echo ""
 echo -e "網域優惠"
@@ -14814,7 +14814,7 @@ echo "更新系統 k update | k 更新"
 echo "清理系統垃圾 k clean | k 清理"
 echo "重裝系統面板 k dd | k 重裝"
 echo "bbr3控制面板 k bbr3 | k bbrv3"
-echo "内核调优面板        k nhyh | k 内核优化"
+echo "核心調優面板 k nhyh | k 核心最佳化"
 echo "設定虛擬記憶體 k swap 2048"
 echo "設定虛擬時區 k time Asia/Shanghai | k 時區 Asia/Shanghai"
 echo "系統回收站 k trash | k hsz | k 回收站"
