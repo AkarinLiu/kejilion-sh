@@ -6116,7 +6116,7 @@ net.ipv4.tcp_slow_start_after_idle = 0"
 net.core.default_qdisc = $QDISC
 net.ipv4.tcp_congestion_control = $CC
 
-# ── TCP 缓冲区 ──
+# ── TCP 緩衝區 ──
 net.core.rmem_max = $RMEM_MAX
 net.core.wmem_max = $WMEM_MAX
 net.core.rmem_default = $(echo "$TCP_RMEM" | awk '{print $2}')
@@ -6301,7 +6301,7 @@ Kernel_optimize() {
 	  echo -e "--------------------"
 	  echo -e "1. 高效能最佳化模式： 最大化系統效能，激進的記憶體和網路參數。"
 	  echo -e "2. 均衡最佳化模式： 在效能與資源消耗之間取得平衡，適合日常使用。"
-	  echo -e "3. 网站优化模式：       针对网站服务器优化，超高并发连接队列。"
+	  echo -e "3. 網站最佳化模式： 針對網站伺服器最佳化，超高並發連線佇列。"
 	  echo -e "4. 直播最佳化模式： 針對直播推流優化，UDP 緩衝區加大，減少延遲。"
 	  echo -e "5. 遊戲服最佳化模式： 針對遊戲伺服器最佳化，低延遲優先。"
 	  echo -e "6. 還原預設設定： 將系統設定還原為預設配置。"
@@ -8128,7 +8128,7 @@ docker_ssh_migration() {
 				project_name=$(basename "$f" | sed 's/backup_type_//')
 				path_file="$BACKUP_DIR/compose_path_${project_name}.txt"
 				[[ -f "$path_file" ]] && original_path=$(cat "$path_file") || original_path=""
-				[[ -z "$original_path" ]] && read -e -p  "未找到原始路徑，請輸入還原目錄路徑:" original_path
+				[[ -z "$original_path" ]] && read -e -p  "未找到原始路径，请输入还原目录路径: " original_path
 
 				# 檢查該 compose 項目的容器是否已在運作
 				running_count=$(docker ps --filter "label=com.docker.compose.project=$project_name" --format '{{.Names}}' | wc -l)
@@ -10057,7 +10057,7 @@ moltbot_menu() {
 		echo "9. 技能管理（安裝/刪除）"
 		echo "10. 編輯主設定文件"
 		echo "11. 配置精靈"
-		echo "12. 健康检测与修复"
+		echo "12. 健康檢測與修復"
 		echo "13. WebUI存取與設置"
 		echo "14. TUI命令列對話窗口"
 		echo "15. 記憶/Memory"
@@ -10776,7 +10776,7 @@ EOF
 			openclaw_sync_sessions_model "$provider_name/$default_model"
 			start_gateway
 			echo "$finish_msg"
-			echo "✅ 當前 API 協定類型:$DETECTED_API"
+			echo "✅ 当前 API 协议类型: $DETECTED_API"
 		fi
 
 		break_end
@@ -11047,7 +11047,7 @@ local_set = set(local_ids)
 
 template = copy.deepcopy(local_models[0]) if local_models else None
 if template is None:
-    print(f'❌ {target}: 本地 models 無有效模板模型，無法補全新增模型')
+    print(f'❌ {target}: 本地 models 无有效模板模型，无法补全新增模型')
     raise SystemExit(3)
 
 removed_ids = [mid for mid in local_ids if mid not in remote_set]
@@ -11149,7 +11149,7 @@ PY2
 
 openclaw_detect_api_protocol_by_provider() {
 	# 協定探測邏輯已移除：腳本不再自動偵測/判定 API 類型。
-	# 保留函數以相容選單調用，但不做任何改寫。
+	# 保留函数以兼容菜单调用，但不做任何改写。
 	echo "ℹ️ 已關閉協議探測：請手動在${HOME}/.openclaw/openclaw.json 中設定 provider.api 為 openai-completions 或 openai-responses"
 	return 0
 }
@@ -11798,7 +11798,7 @@ PYTHON_EOF
 				return 0
 			else
 				if ! command -v gum >/dev/null 2>&1 || ! gum --version >/dev/null 2>&1; then
-					echo "gum 不可用，傳回舊版輸入模式。"
+					echo "gum 不可用，返回旧版输入模式。"
 					sleep 1
 					continue
 				fi
@@ -12962,9 +12962,9 @@ if os.path.isdir(agents_root):
 	openclaw_backup_detect_type() {
 		local file_name="$1"
 		if [[ "$file_name" == openclaw-memory-full-*.tar.gz ]]; then
-			echo "记忆备份文件"
+			echo "記憶備份文件"
 		elif [[ "$file_name" == openclaw-project-*.tar.gz ]]; then
-			echo "项目备份文件"
+			echo "專案備份文件"
 		else
 			echo "其他備份文件"
 		fi
@@ -13378,9 +13378,9 @@ for entry in data:
         vec_str = "就緒" if vec.get("available") else "已啟用(不可用)"
     else:
         vec_str = "未啟用"
-    print("  向量库: %s" % vec_str)
+    print("向量庫: %s" % vec_str)
     ws = s.get("workspaceDir") or "-"
-    print("  工作区: %s" % ws)
+    print("工作區: %s" % ws)
     db = s.get("dbPath") or "-"
     print("索引庫: %s" % db)
     scan = entry.get("scan", {})
@@ -13597,10 +13597,10 @@ PY
 			export PATH="$HOME/.bun/bin:$PATH"
 		fi
 		if command -v bun >/dev/null 2>&1; then
-			echo "✅ bun 安裝完成"
+			echo "✅ bun 安装完成"
 			return 0
 		fi
-		echo "❌ bun 安裝失敗"
+		echo "❌ bun 安装失败"
 		return 1
 	}
 
@@ -13675,7 +13675,7 @@ PY
 		echo "目標方案:$scheme_label"
 		echo "地區: ${OPENCLAW_MEMORY_COUNTRY:-unknown}"
 		echo "鏡像來源探測: huggingface.co=${OPENCLAW_MEMORY_HF_OK:-unknown} hf-mirror.com=${OPENCLAW_MEMORY_MIRROR_OK:-unknown}"
-		echo "下載來源: ${OPENCLAW_MEMORY_HF_BASE:-unknown}"
+		echo "下载源: ${OPENCLAW_MEMORY_HF_BASE:-unknown}"
 		if [ -n "$OPENCLAW_MEMORY_EXPECT_PATH" ]; then
 			echo "預計下載路徑:$OPENCLAW_MEMORY_EXPECT_PATH"
 		fi
@@ -14509,11 +14509,11 @@ print(json.dumps(data, indent=2))
 		echo "---------------------------------------"
 		echo -e "${gl_huang}[應用層 Tool Policy 狀態]${gl_bai}"
 		echo "Profile (預設): ${current_profile:-(unset)}"
-		echo "Exec 限制: ${current_sec:-(unset)}"
+		echo "  Exec 限制: ${current_sec:-(unset)}"
 		echo "審核提示: ${current_ask:-(unset)}"
 		echo "提權開關: ${current_elevated:-(unset)}"
 
-		echo -e "\n${gl_huang}[底层 Exec Approvals 状态]${gl_bai}"
+		echo -e "\n${gl_huang}[底層 Exec Approvals 狀態]${gl_bai}"
 		if openclaw_has_command openclaw; then
 			local approvals_json
 			approvals_json=$(openclaw approvals get --json 2>/dev/null)
@@ -14530,8 +14530,8 @@ try:
     fb = defaults.get("askFallback", "(unset)")
     auto = defaults.get("autoAllowSkills", False)
     print("攔截策略 (Security):" + str(sec))
-    print("  提示策略 (Ask): " + str(ask))
-    print("  无UI兜底 (AskFallback): " + str(fb))
+    print("提示策略 (Ask):" + str(ask))
+    print("無UI兜底 (AskFallback):" + str(fb))
     print("自動放行技能 (autoAllowSkills):" + ("on" if auto else "off"))
     exists = d.get("exists", True)
     if not exists:
@@ -15099,7 +15099,7 @@ by_agent={}
 for item in sessions:
     aid = item.get("agentId","?")
     by_agent[aid] = by_agent.get(aid, 0) + 1
-print("会话汇总:")
+print("會話匯總:")
 for agent_id,count in sorted(by_agent.items()):
     print("- %s: %s" % (agent_id, count))
 print("---------------------------------------")
